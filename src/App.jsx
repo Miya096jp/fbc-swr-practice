@@ -6,15 +6,13 @@ const fetcher = async (...args) => {
 
   if (!res.ok) {
     const error = new Error("Failed to load");
-    error.info = await res.json();
-    error.status = res.status;
     throw error;
   }
   return res.json();
 };
 
 function App() {
-  const url = "https://httpstat.us/404";
+  const url = "https://httpstat.us/200?sleep=5000";
   const headers = { Accept: "application/json" };
   const { data, error, isLoading } = useSWR(
     [url, { headers }],
